@@ -1,0 +1,145 @@
+
+After Kubernetes installation is complete
+-----------------------------------------
+
+
+Hands On 
+=======
+
+kubectl version
+
+kubectl get nodes
+
+kubectl describe node <<node name>>
+
+
+kubectl apply -f create-pod.yml 
+  
+kubectl apply -f create-pod.yml 
+kubectl get pods
+
+kubectl describe pod testpod
+kubectl describe pod testpod > a.txt
+vi a.txt
+
+kubectl logs -f testpod
+
+docker images
+
+kubectl get pods --all-namespaces
+
+
+kubectl get pods -o wide
+kubectl get pods -o yaml	
+
+vi pod2.yml
+kubectl apply -f pod2.yml 
+kubectl describe pod testpod2 >b.txt
+vi b.txt 
+
+kubectl logs -f testpod2
+
+kubectl exec testpod2 -- hostname
+
+-- Multiple Containers in a Pod
+kubectl apply –f pod-multi.yml
+
+kubectl get pods (Observe 2/2 under Ready)
+
+kubectl describe pod testpod3
+Logs from container c02
+kubectl logs -f testpod3 –c c01
+
+Logs from container c02
+kubectl logs -f testpod3 –c c02
+
+kubectl exec testpod3 – hostname
+kubectl exec testpod3 – hostname -i
+
+
+
+--Label Pods
+
+kubectl apply -f pod-label.yml
+
+kubectl get pods
+kubectl describe pod testpod4
+kubectl logs -f testpod4
+
+kubectl exec testpod4 –- hostname
+kubectl exec testpod4 –- hostname -i
+
+
+--Labels - Additional Commands
+kubectl get pods –-show-labels
+
+kubectl label pods <<podname>> <key>=<value>
+e.g. kubectl label pods podmulti env=prod
+
+Make sure you have multiple pods with same labels
+kubectl get pods -l env=prod
+
+kubectl delete pods -l env=uat
+
+--Replication Controller
+kubectl apply -f pod-replicationController.yaml
+
+kubectl get pods
+
+kubectl delete pods <<pod name>>
+
+--Edit yaml file - change replicas to 5
+kubectl apply -f pod-replicationController.yaml
+kubectl get pods
+kubectl delete pod <<pod name>>
+kubectl get pods
+
+--Rename yaml file and only  edit replicas count to less than 5 
+cp pod-replicationController.yaml rc.yaml
+kubectl get pods
+
+
+--In renamed yaml file, change name of a kind (replicationcontroller to your name ) and apply, get all pods.
+
+$kubectl delete pods --all
+$kubectl get pods
+
+
+--How to delete then these pods?
+--List down all Replication Controllers
+$kubectl get rc
+$kubectl get pods
+
+--Delete all Replication Controllers
+	
+kubectl get pods
+
+--Replication scaling
+kubectl scale --replicas=7 replicationcontroller -l myname=adminpod
+
+Kubectl get pods
+
+kubectl scale --replicas=0 replicationcontroller -l myname=adminpod
+
+Kubectl get rc
+
+--Delete all Replication Controllers
+kubectl delete rc --all
+kubectl get pods
+
+--Replica Sets
+$kubectl apply -f pod-replicaSets.yml
+kubectl get pods
+Check for Replica Sets
+kubectl get rs
+
+kubectl describe rs <<replicaSetName>>
+
+kubectl scale --replicas=5 rs/replicaset OR
+kubectl scale -–replicas=3 rs/replicaset –l myname=adminpod
+
+kubectl delete rs <<replicaset name>>
+
+
+--Deployments
+Refer Deployments using Kubectl.txt and nginx-deployment.yaml

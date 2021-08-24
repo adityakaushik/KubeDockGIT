@@ -1,0 +1,122 @@
+***remove existing git **
+yum remove git
+
+**Switch root User **
+sudo su -
+
+**Update the yum repository**
+yum clean all
+yum update -y
+
+**Install git**
+yum install -y git
+
+**Check version of git**
+git --version
+
+
+**github Registration **
+https://github.com/
+
+**Add Public key in Git hub account **.
+** Create a new public repository on github (Shop) **
+** Add a file in Repository ***
+-	Order.txt
+
+** Command to genrate ssh private and public key **
+ssh-keygen -t ed25519 -C vyas.yognedra@gmail.com
+
+**Create a directory  in VM **
+mkdir gitworkingdir
+
+***Clone a git repository using HTTPS  **
+git clone https://github.com/driveinteluser1/shop.git
+
+** Go inside Repository **
+cd shop
+
+**Set git config **  
+git config --list
+
+**Set git config for user**
+git config --global user.name driveinteluser1
+
+** Set git config for user **
+git config --global user.email vyas.yognedra@gmail.com
+
+***Check status of the directory(git repository) ***
+git status
+
+*** create a file ***
+rate.txt
+
+*** Add file in git ***
+git add rate.txt
+
+** Commit file in git ***
+git commit -m "Adding rate file"
+
+
+***Push changes to Remote Repo****
+git push origin master
+Push changes to remote repository (and remember the branch)
+git push -u origin master
+Push changes to remote repository (remembered branch)
+git push
+
+***Pull Changes from Remote ***
+Create a new file catalog.txt in Github in master Branch
+git pull
+
+****Initialized git Project ******
+mkdir demoproject
+git init
+git add demo.txt
+git commit -m "adding the file"
+Go to Github protal and create empty repository
+git remote add origin https://github.com/driveinteluser1/testrepo.git
+git push -u origin master
+git push --set-upstream origin master
+
+** Branch demo
+cd shop
+git branch
+git branch –a
+git branch storyA
+git checkout storyA
+*create a file and commit *
+git push origin storyA
+git checkout -b storyB
+* create a file and commit *
+git push origin storyB
+
+*git Merge*
+git merge <<branch name>>
+*Renaming of branch*
+git branch –m storyB StoryC
+*Delete a branch*
+git branch –d <<branch name>>
+*Delete a remote branch*
+git push origin --delete <<branch name>>
+
+
+***Git Stash***
+git stash
+git stash pop
+git stash clear
+
+***Git Diff**
+git diff <<source branch>> <<target branch>>
+
+***Git Log ***
+git log
+git log –summary
+git log –oneline
+
+***Git Tag**
+git tag version1
+git push origin version1
+
+
+
+
